@@ -22,8 +22,8 @@ p(
 
 prefer_J_over_N(J,N,Z) :- J=1..m, N=1..m, J != N, Z = #sum{ X : votecount(I,X), p(I,PosJ,J), p(I,PosN,N), PosJ<PosN, I=1..m}.
 
-score(J,2*S1 + S2) :- S1 = #sum{ X  :  prefer_J_over_N(J,N,Z1), prefer_J_over_N(N,J,Z2), N=1..m, Z1 > Z2, X=1 },
-                        S2 = #sum{ X  :  prefer_J_over_N(J,N,Z1), prefer_J_over_N(N,J,Z2), N=1..m, Z1 = Z2, X=1 },J=1..m.
+score(J,2*S1 + S2) :- S1 = #sum{ X,J  :  prefer_J_over_N(J,N,Z1), prefer_J_over_N(N,J,Z2), N=1..m, Z1 > Z2, X=1 },
+                        S2 = #sum{ X,J  :  prefer_J_over_N(J,N,Z1), prefer_J_over_N(N,J,Z2), N=1..m, Z1 = Z2, X=1 },J=1..m.
 
 
 #show prefer_J_over_N/3.
